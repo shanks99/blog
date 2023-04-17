@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('user_id')->unique()->comment('아이디'); // 요기 추가
+            $table->unsignedSmallInteger('user_level')->comment('권한'); // 요기 추가
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
