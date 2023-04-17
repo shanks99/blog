@@ -38,9 +38,4 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // 아래의 username을 추가하여 이메일 로그인에서 아이디 로그인으로 변경.
-    public function username()
-    {
-        return 'user_id'; // 필드의 네임을 여러분의 선택.
-    }
 }
