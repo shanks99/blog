@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\CrudController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 # 뷰 라우트
 // Route::view('/foo', $action);
 // Route::view('/foo', $action, ['name' => 'roadJeong']);
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/*
+|--------------------------------------------------------------------------
+| Crud
+|--------------------------------------------------------------------------
+|
+| Crud 기본 테스트
+|
+*/
+// cruds 로 get 요청이 올 경우 CrudController 의 index 함수를 실행합니다.
+// name 은 별명으로 나중에 route('crud.index') 로 쉽게 주소 출력이 가능합니다.
+Route::get('/cruds',[App\Http\Controllers\CrudController::class, 'index'])->name('crud.index');
