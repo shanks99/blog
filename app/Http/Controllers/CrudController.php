@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class CrudController extends Controller
 {
+    ## Init
     private $crud;
 
     public function __construct(crud $crud) {
@@ -15,6 +16,7 @@ class CrudController extends Controller
         $this->crud = $crud;
     }
 
+    ## List
     public function index() {
         // cruds 의 데이터를 최신순으로 페이징을 해서 가져옵니다.
         $cruds = $this->crud->latest()->paginate(10);
@@ -22,6 +24,7 @@ class CrudController extends Controller
         return view('cruds.index', compact('cruds')); //
     }
 
+    ## Write
     public function create() {
         // 등록
         return view('cruds.create');
@@ -44,11 +47,37 @@ class CrudController extends Controller
         return redirect()->route('cruds.index');
     }
 
-    // public function show(Crud $crud) {
-    //     return view('cruds.show', compact('crud'));
-    // }
+    ## Read
+    // Crud 전체로 받는 방법
+    public function show(Crud $crud) {
+        return view('cruds.show', compact('crud'));
+    }
+    // id만 받는 방법
+    /*
     public function show($id) {
         $crud = Crud::find($id);
         return view('cruds.show', compact('crud'));
     }
+    */
+
+    ## Modify
+    public function edit(Crud $crud) {
+        return view('cruds.edit', compact('crud'));
+    }
+
+    public function update(Request $request, Crud $crud) {
+        $validataedData = $request->validate([
+            'name' => 'required|max:255',
+            'content' => 'required'
+        ]);
+
+        // $crud는 수정할 모델 값이므로 바로 업데이트 해줍시다
+        $crud->name = $validataedData['name'];
+        $crud->content = $validataedData['content'];
+        $crud->update();
+
+        return redirect()->route('cruds.index', $crud);
+    }
+
+    ## Delete
 }

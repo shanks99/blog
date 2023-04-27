@@ -35,7 +35,7 @@
                 </td>
                 <td>{{$crud->created_at}}</td>
                 <td>
-                    <a href="" class="btn btn-warning">M</a>
+                    <a href="{{route("cruds.edit", $crud)}}" class="btn btn-warning">M</a>
                     <a href="" class="btn btn-danger">D</a>
                 </td>
             </tr>
