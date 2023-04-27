@@ -36,7 +36,13 @@
                 <td>{{$crud->created_at}}</td>
                 <td>
                     <a href="{{route("cruds.edit", $crud)}}" class="btn btn-warning">M</a>
-                    <a href="" class="btn btn-danger">D</a>
+
+                    <form action="{{route("cruds.destroy", $crud->id)}}" method="post">
+                        {{-- delete method와 csrt 처리 필요 --}}
+                        @method('delete')
+                        @csrf
+                        <button type="submit" onclick="return confirm('정말로 삭제 하시겠습니까?');" class="btn btn-danger">D</button>
+                    </form>
                 </td>
             </tr>
         @endforeach

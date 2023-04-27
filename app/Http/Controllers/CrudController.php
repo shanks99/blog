@@ -80,4 +80,8 @@ class CrudController extends Controller
     }
 
     ## Delete
+    public function destroy(Crud $crud) {
+        $crud->delete();
+        return redirect()->route('cruds.index');
+    }
 }
