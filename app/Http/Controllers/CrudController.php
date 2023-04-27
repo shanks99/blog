@@ -31,12 +31,24 @@ class CrudController extends Controller
     {
         // Request 에 대한 유효성 검사, 다양한 종류가 있기에 공식문서를 보시는 걸 추천드립니다.
         // 유효성에 걸린 에러는 errors 에 담깁니다.
-        $request = $request->validate([
-            'name' => 'required',
+        $validataedData = $request->validate([
+            'name' => 'required|max:255',
             'content' => 'required',
         ]);
 
-        $this->crud->create($request);
+        $crud = new Crud;
+        $crud->name = $validataedData['name'];
+        $crud->content = $validataedData['content'];
+        $crud->save();
+
         return redirect()->route('cruds.index');
+    }
+
+    // public function show(Crud $crud) {
+    //     return view('cruds.show', compact('crud'));
+    // }
+    public function show($id) {
+        $crud = Crud::find($id);
+        return view('cruds.show', compact('crud'));
     }
 }

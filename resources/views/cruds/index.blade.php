@@ -12,9 +12,9 @@
     <table class="table table-striped table-hover">
         <colgroup>
             <col width="15%"/>
-            <col width="55%"/>
+            <col width="45%"/>
             <col width="15%"/>
-            <col width="15%"/>
+            <col width="25%"/>
         </colgroup>
         <thead>
         <tr>
@@ -30,14 +30,21 @@
         @foreach ($cruds as $key => $crud)
             <tr>
                 <th scope="row">{{$key+1 + (($cruds->currentPage()-1) * 10)}}</th>
-                <td>{{$crud->name}}</td>
+                <td>
+                    <a href="{{route("cruds.show", $crud->id)}}">{{$crud->name}}</a>
+                </td>
                 <td>{{$crud->created_at}}</td>
-                <td>Edit/Delete</td>
+                <td>
+                    <a href="" class="btn btn-warning">M</a>
+                    <a href="" class="btn btn-danger">D</a>
+                </td>
             </tr>
         @endforeach
         </tbody>
     </table>
 
+    {{-- 라라벨 기본 지원 페이지네이션 --}}
+    {!! $cruds->links() !!}
     </div>
 </div>
 @endsection
