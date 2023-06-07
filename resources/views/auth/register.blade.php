@@ -24,7 +24,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('이메일') }}</label>
 
@@ -65,7 +65,7 @@
                             <label for="tel" class="col-md-4 col-form-label text-md-end">{{ __('전화') }}</label>
 
                             <div class="col-md-6">
-                                <input id="tel" type="text" class="form-control @error('name') is-invalid @enderror" name="tel" value="{{ old('tel') }}" autocomplete="tel" autofocus>
+                                <input id="tel" type="text" class="form-control @error('tel') is-invalid @enderror" name="tel" value="{{ old('tel') }}" autocomplete="tel" autofocus>
 
                                 @error('tel')
                                     <span class="invalid-feedback" role="alert">
@@ -79,7 +79,7 @@
                             <label for="hp" class="col-md-4 col-form-label text-md-end">{{ __('휴대폰') }}</label>
 
                             <div class="col-md-6">
-                                <input id="hp" type="text" class="form-control @error('name') is-invalid @enderror" name="hp" value="{{ old('hp') }}" required autocomplete="hp" autofocus>
+                                <input id="hp" type="text" class="form-control @error('hp') is-invalid @enderror" name="hp" value="{{ old('hp') }}" required autocomplete="hp" autofocus>
 
                                 @error('hp')
                                     <span class="invalid-feedback" role="alert">
@@ -93,7 +93,7 @@
                             <label for="zipcode" class="col-md-4 col-form-label text-md-end">{{ __('우편번호') }}</label>
 
                             <div class="col-md-6">
-                                <input id="zipcode" type="text" class="form-control @error('name') is-invalid @enderror" name="zipcode" value="{{ old('zipcode') }}" required autocomplete="zipcode" autofocus>
+                                <input id="zipcode" type="text" class="form-control @error('zipcode') is-invalid @enderror" name="zipcode" value="{{ old('zipcode') }}" autocomplete="zipcode" autofocus>
 
                                 @error('zipcode')
                                     <span class="invalid-feedback" role="alert">
@@ -107,7 +107,7 @@
                             <label for="address1" class="col-md-4 col-form-label text-md-end">{{ __('주소1') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address1" type="text" class="form-control @error('name') is-invalid @enderror" name="address1" value="{{ old('address1') }}" required autocomplete="address1" autofocus>
+                                <input id="address1" type="text" class="form-control @error('address1') is-invalid @enderror" name="address1" value="{{ old('address1') }}" required autocomplete="address1" autofocus>
 
                                 @error('address1')
                                     <span class="invalid-feedback" role="alert">
@@ -121,7 +121,7 @@
                             <label for="address2" class="col-md-4 col-form-label text-md-end">{{ __('주소2') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address2" type="text" class="form-control @error('name') is-invalid @enderror" name="address2" value="{{ old('address2') }}" required autocomplete="address2" autofocus>
+                                <input id="address2" type="text" class="form-control @error('address2') is-invalid @enderror" name="address2" value="{{ old('address2') }}" required autocomplete="address2" autofocus>
 
                                 @error('address2')
                                     <span class="invalid-feedback" role="alert">

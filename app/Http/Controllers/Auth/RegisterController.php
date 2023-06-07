@@ -49,16 +49,22 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $rules = [
             'name' => ['required', 'string', 'max:30'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
-            'tel' => ['string', 'max:12'],
             'hp' => ['required','string', 'max:11'],
             'zipcode' => ['required','integer', 'min:5'],
             'address1' => ['required','string'],
             'address2' => ['required','string'],
-        ]);
+        ];
+
+        // 선택적 입력 필드 추가
+        if (isset($data['tel'])) {
+            $rules['tel'] = ['nullable', 'string', 'max:12'];
+        }
+
+        return Validator::make($data, $rules);
     }
 
     /**
@@ -73,7 +79,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'tel' => $data['tel'],
+            'tel' => $data['tel'] ?? null, // 선택적 입력 필드 처리
             'hp' => $data['hp'],
             'zipcode' => $data['zipcode'],
             'address1' => $data['address1'],
