@@ -64,10 +64,14 @@ class RegisterController extends Controller
             $rules['tel'] = ['nullable', 'string', 'max:12'];
         }
 
+        // 에러가 발생 되어도 함께 넘겨준다
+        // # 에러 확인방법
+        // $validator = Validator::make($data, $rules);
+        // dd($validator->errors);
         return Validator::make($data, $rules);
     }
 
-    /**
+    /**s
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
