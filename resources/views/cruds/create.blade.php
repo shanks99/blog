@@ -22,7 +22,7 @@
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" name="name" class="form-control" id="name" autocomplete="off">
+                <input type="text" name="name" class="form-control" id="name" autocomplete="off" value="{{ Auth::user()->name }}">
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">Content</label>

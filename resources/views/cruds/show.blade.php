@@ -8,7 +8,7 @@
         <p class="pt-2 text-right">{{ $crud->created_at }}</p>
 
         <div class="content mt-4 rounded-3 border border-secondary">
-            <div class="p-3">{{ $crud->content }}</div>
+            <div class="p-3">{!! nl2br($crud->content) !!}</div>
         </div>
     </div>
 @endsection

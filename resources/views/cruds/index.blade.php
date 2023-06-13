@@ -19,7 +19,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Number</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Content</th>
                         <th scope="col">Created At</th>
                         <th scope="col"></th>
                     </tr>
@@ -31,9 +31,9 @@
                         <tr>
                             <th scope="row">{{ $key + 1 + ($cruds->currentPage() - 1) * 10 }}</th>
                             <td>
-                                <a href="{{ route('cruds.show', $crud->id) }}">{{ $crud->name }}</a>
+                                <a href="{{ route('cruds.show', $crud->id) }}">{{ Str::limit($crud->content, 20, '...') }}</a>
                             </td>
-                            <td>{{ $crud->created_at }}</td>
+                            <td>{{ $crud->created_at->format('Y-m-d') }}</td>
                             <td>
                                 <a href="{{ route('cruds.edit', $crud) }}" class="btn btn-warning">M</a>
 

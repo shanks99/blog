@@ -20,6 +20,7 @@ class CrudController extends Controller
     public function index() {
         // cruds 의 데이터를 최신순으로 페이징을 해서 가져옵니다.
         $cruds = $this->crud->latest()->paginate(10);
+
         // crud/index.blade 에 $crud 를 보내줍니다
         return view('cruds.index', compact('cruds')); //
     }
