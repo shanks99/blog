@@ -91,3 +91,16 @@ Route::patch('cruds/{crud}',[App\Http\Controllers\CrudController::class, 'update
 
 ## Delete
 Route::delete('cruds/{crud}',[App\Http\Controllers\CrudController::class, 'destroy'])->name('cruds.destroy');
+
+/*
+ * TodoList
+*/
+Route::controller(App\Http\Controllers\TodoController::class)->group(function () {
+    Route::get('todos', [App\Http\Controllers\TodoController::class, 'index'])->name('todos.index');
+    Route::get('todos/create', [App\Http\Controllers\TodoController::class, 'create'])->name('todos.create');
+    Route::post('todos/store', [App\Http\Controllers\TodoController::class, 'store'])->name('todos.store');
+    Route::get('todos/{todo}', [App\Http\Controllers\TodoController::class, 'show'])->name('todos.show');
+    Route::get('todos/{todo}/edit', [App\Http\Controllers\TodoController::class, 'edit'])->name('todos.edit');
+    Route::patch('todos/{todo}', [App\Http\Controllers\TodoController::class, 'update'])->name('todos.update');
+    Route::delete('todos/{todo}', [App\Http\Controllers\TodoController::class, 'destroy'])->name('todos.destroy');
+});
