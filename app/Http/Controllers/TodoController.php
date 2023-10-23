@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateTodoRequest;
+use App\Http\Requests\DeleteTodoRequest;
+use App\Http\Requests\EditTodoRequest;
+use App\Http\Requests\UpdateTodoRequest;
 use App\Models\todo;
 use App\Models\User;
 use Auth;
@@ -31,15 +35,11 @@ class TodoController extends Controller
      * create & store
     */
     public function create() {
-        $this->authorize("create", Todo::class);
-
         return view("todos.create");
     }
 
-    public function store(Request $request) {
-        $validate = $request->validate([
-            "content"=> "required",
-        ]);
+    public function store(CreateTodoRequest $request) {
+        $validate = $request->validated();
 
         todo::create([
             "user_id"=> Auth::user()->id,
@@ -61,16 +61,12 @@ class TodoController extends Controller
     /*
      * edit & update
     */
-    public function edit(Todo $todo) {
+    public function edit(EditTodoRequest $request, Todo $todo) {
         return view("todos.edit", compact("todo"));
     }
 
-    public function update(Request $request, Todo $todo) {
-        $this->authorize("update", $todo);
-
-        $validate = $request->validate([
-            "content"=> "required",
-        ]);
+    public function update(UpdateTodoRequest $request, Todo $todo) {
+        $validate = $request->validated();
 
         todo::where("id", $todo->id)->update([
             "content"=> $validate['content'],
@@ -82,9 +78,7 @@ class TodoController extends Controller
     /*
      * destory
     */
-    public function destroy(Todo $todo) {
-        $this->authorize("delete", $todo);
-
+    public function destroy(DeleteTodoRequest $request, Todo $todo) {
         $todo->delete();
 
         return redirect()->route("todos.index");
