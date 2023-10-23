@@ -10,7 +10,7 @@ use Tests\TestCase;
 class TodoControllerTest extends TestCase
 {
     /**
-     * 글 작성하기 Test
+     * @Test
      */
     public function 글쓰기(): void
     {
