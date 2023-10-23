@@ -11,10 +11,10 @@ class TodoPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
-    {
-        //
-    }
+    // public function viewAny(User $user): bool
+    // {
+    //     //
+    // }
 
     /**
      * Determine whether the user can view the model.
@@ -29,7 +29,7 @@ class TodoPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->id;
     }
 
     /**
@@ -51,16 +51,16 @@ class TodoPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Todo $todo): bool
-    {
-        //
-    }
+    // public function restore(User $user, Todo $todo): bool
+    // {
+    //     //
+    // }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Todo $todo): bool
-    {
-        //
-    }
+    // public function forceDelete(User $user, Todo $todo): bool
+    // {
+    //     //
+    // }
 }

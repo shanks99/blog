@@ -31,6 +31,8 @@ class TodoController extends Controller
      * create & store
     */
     public function create() {
+        $this->authorize("create", Todo::class);
+
         return view("todos.create");
     }
 

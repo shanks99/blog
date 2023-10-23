@@ -5,9 +5,11 @@
         <div class="row justify-content-center">
             <h2 class="mt-4 mb-3">todo List</h2>
 
+            @can('create',App\Models\Todo::class)
             <a href="{{ route('todos.create') }}">
                 <button type="button" class="btn btn-dark" style="float: right;">Create</button>
             </a>
+            @endcan
 
             <ul class="list-group">
                 @foreach ($todos as $key => $todo)
