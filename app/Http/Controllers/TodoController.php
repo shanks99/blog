@@ -10,6 +10,7 @@ use App\Models\todo;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class TodoController extends Controller
 {
@@ -26,7 +27,13 @@ class TodoController extends Controller
      * List
     */
     public function index() {
-        $todos = $this->todo->latest()->paginate(5);
+        $todos = todo::
+            withCount('comments')
+            ->withExists(['comments as recent_comments_exists'=> function($query){
+                $query->where('created_at','>',Carbon::now()->subDay());
+            }])
+            ->latest()
+            ->paginate(5);
 
         return view("todos.index", compact("todos"));
     }
@@ -54,6 +61,9 @@ class TodoController extends Controller
     */
     public function show(Todo $todo) {
         $user = User::find($todo->user_id);
+
+        $todo->load("comments.user"); // 다중 호출이 되어 미리 불러옴
+        $todo->loadCount('comments'); // 연관된 댓글 카운트
 
         return view("todos.show", compact(["todo","user"]));
     }

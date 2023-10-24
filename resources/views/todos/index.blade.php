@@ -18,21 +18,13 @@
                             <a href="{{ route('todos.show', $todo->id) }}">{{ Str::limit($todo->content, 20, '...') }}</a>
                         </p>
                         <div>
-                            {{ $todo->created_at->format('Y-m-d') }}
-                            @can('update', $todo)
-                            <a href="{{ route('todos.edit', $todo) }}" class="btn btn-warning">수정</a>
-                            @endcan
-
-                            @can('delete', $todo)
-                            <form action="{{ route('todos.destroy', $todo->id) }}" method="post" style="display: inline;">
-                                {{-- delete method와 csrt 처리 필요 --}}
-                                @method('delete')
-                                @csrf
-                                <button type="submit" onclick="return confirm('정말로 삭제 하시겠습니까?');"
-                                    class="btn btn-danger">삭제</button>
-                            </form>
-                            @endcan
+                            {{ $todo->created_at->format('Y-m-d') }} |
+                            <span>댓글 {{ $todo->comments_count }}</span>
+                            @if ($todo->recent_comments_exists)
+                            [New]
+                            @endif
                         </div>
+                        <x-todo-button-group :todo=$todo />
                     </li>
                 @endforeach
             </ul>

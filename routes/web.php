@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -104,3 +105,8 @@ Route::controller(App\Http\Controllers\TodoController::class)->group(function ()
     Route::patch('todos/{todo}', [App\Http\Controllers\TodoController::class, 'update'])->name('todos.update');
     Route::delete('todos/{todo}', [App\Http\Controllers\TodoController::class, 'destroy'])->name('todos.destroy');
 });
+
+/*
+ * Comment
+*/
+Route::resource('comments',CommentController::class);
