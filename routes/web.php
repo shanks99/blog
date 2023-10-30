@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BoardController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -110,3 +111,9 @@ Route::controller(App\Http\Controllers\TodoController::class)->group(function ()
  * Comment
 */
 Route::resource('comments',CommentController::class);
+
+
+/*
+ *  Board
+ */
+Route::resource('boards', BoardController::class);
