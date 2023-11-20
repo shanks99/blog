@@ -19,7 +19,12 @@
                         </p>
                         <div class="row justify-content-end p-1">
                             {{ $board->created_at->format('Y-m-d') }} |
-                            {{ $board->user->name }}
+                            {{ $board->user->name }} |
+                            댓글 :
+                            @if ($board->recent_board_replys_exists)
+                            [New]
+                            @endif
+                            {{ $board->board_replys_count }}
                         </div>
                     </li>
                 @endforeach

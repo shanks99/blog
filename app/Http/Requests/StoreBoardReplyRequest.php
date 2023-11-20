@@ -2,17 +2,17 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Board;
+use App\Models\BoardReply;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateBoardRequest extends FormRequest
+class StoreBoardReplyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return $this->user()->can('update', Board::class);
+        return $this->user()->can('create', BoardReply::class);
     }
 
     /**
@@ -23,8 +23,10 @@ class UpdateBoardRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=> 'string|required',
-            'content'=> 'string|required',
+            'user_id'=> 'integer',
+            'board_id'=> 'integer|required',
+            'reply_id'=> '',
+            'comment'=> 'string|required',
         ];
     }
 }

@@ -18,9 +18,9 @@ class BoardFactory extends Factory
     public function definition(): array
     {
         return [
-            "user_id" => User::factory(),
+            // "user_id" => User::factory(),
             // "user_id" => $this->faker->randomElement(User::pluck("id")->toArray()),
-            // "user_id" => User::all()->pluck('id')->random(),
+            "user_id" => User::all()->pluck('id')->random(),
             "title" => $this->faker->realText("20"),
             // "title" => $this->faker->unique()->sentence(),
             "content" => $this->faker->realText(),

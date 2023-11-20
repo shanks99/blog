@@ -7,6 +7,7 @@
         <h2 class="mt-4 mb-3">Board Edit</h2>
 
         {{-- 유효성 검사에 걸렸을 경우 --}}
+
         @if ($errors->any())
             <div class="alert alert-warning" role="alert">
                 <ul>

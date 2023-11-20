@@ -25,7 +25,8 @@ class UserFactory extends Factory
             'zipcode' => '100111',
             'address1' => '서울시 강북구',
             'address2' => '미아동 123',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            // 비번 - 1111
+            'password' => '$2y$10$BNonWNj1FTG2SPwLdrdqM.B/Grwek52SQb5mp.382TeAy1C6MLjzK', // password
             'remember_token' => Str::random(10),
         ];
     }

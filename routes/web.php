@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\BoardReplyController;
 use App\Http\Controllers\CommentController;
+use App\Models\BoardReply;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -117,3 +119,4 @@ Route::resource('comments',CommentController::class);
  *  Board
  */
 Route::resource('boards', BoardController::class);
+Route::resource('board_replys', BoardReplyController::class);

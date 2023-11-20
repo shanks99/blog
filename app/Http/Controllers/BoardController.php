@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBoardRequest;
 use App\Http\Requests\UpdateBoardRequest;
 use App\Models\Board;
 use Auth;
+use Illuminate\Support\Carbon;
 
 class BoardController extends Controller
 {
@@ -20,6 +21,10 @@ class BoardController extends Controller
     {
         $boards = board::
             with("user")
+            ->withCount("board_replys") // 댓글수
+            ->withExists(["board_replys as recent_board_replys_exists"=> function($query){
+                $query->where("created_at",">", Carbon::now()->subDays());
+            }]) // [New] 표시
             ->orderBy('id','asc')
             ->paginate(5);
 
@@ -57,6 +62,8 @@ class BoardController extends Controller
     public function show(Board $board)
     {
         $board->load("user");
+        $board->load("board_replys.user"); // 다중 호출이 되어 미리 불러옴
+        $board->loadCount('board_replys'); // 연관된 댓글 카운트
 
         return view('boards.show', compact('board'));
     }
